@@ -1,31 +1,31 @@
 package com.hexagonal.users.application.usecases;
 
-import com.hexagonal.taks.domain.models.Task;
-import com.hexagonal.taks.domain.ports.in.RetrieveTaskUseCase;
-import com.hexagonal.taks.domain.ports.out.TaskRepositoryPort;
+import com.hexagonal.users.domain.models.User;
+import com.hexagonal.users.domain.ports.in.RetrieveUserUseCase;
+import com.hexagonal.users.domain.ports.out.UserRepositoryPort;
 
 import java.util.List;
 import java.util.Optional;
 
-public class RetrieveTaskUseCaseImpl implements RetrieveTaskUseCase {
+public class RetrieveUserUseCaseImpl implements RetrieveUserUseCase {
 
-    private final TaskRepositoryPort taskRepositoryPort;
+    private final UserRepositoryPort userRepositoryPort;
 
-    public RetrieveTaskUseCaseImpl(TaskRepositoryPort taskRepositoryPort) {
-        this.taskRepositoryPort = taskRepositoryPort;
+    public RetrieveUserUseCaseImpl(UserRepositoryPort userRepositoryPort) {
+        this.userRepositoryPort = userRepositoryPort;
     }
 
     @Override
-    public Optional<Task> getTask(Long id) {
-        Optional<Task> task = taskRepositoryPort.findById(id);
+    public Optional<User> getUser(Long id) {
+        Optional<User> task = userRepositoryPort.findById(id);
         if (task.isEmpty()) {
             return Optional.empty();
         }
-        return taskRepositoryPort.findById(id);
+        return userRepositoryPort.findById(id);
     }
 
     @Override
-    public List<Task> getAllTasks() {
-        return taskRepositoryPort.findAll();
+    public List<User> getAllUsers() {
+        return userRepositoryPort.findAll();
     }
 }

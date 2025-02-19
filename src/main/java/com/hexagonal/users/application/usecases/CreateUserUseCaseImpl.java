@@ -1,18 +1,18 @@
 package com.hexagonal.users.application.usecases;
 
-import com.hexagonal.taks.domain.models.Task;
-import com.hexagonal.taks.domain.ports.in.CreateTaskUseCase;
-import com.hexagonal.taks.domain.ports.out.TaskRepositoryPort;
+import com.hexagonal.users.domain.models.User;
+import com.hexagonal.users.domain.ports.in.CreateUserUseCase;
+import com.hexagonal.users.domain.ports.out.UserRepositoryPort;
 
-public class CreateTaskUseCaseImpl implements CreateTaskUseCase {
-    private final TaskRepositoryPort taskRepositoryPort;
+public class CreateUserUseCaseImpl implements CreateUserUseCase {
+    private final UserRepositoryPort userRepositoryPort;
 
-    public CreateTaskUseCaseImpl(TaskRepositoryPort taskRepositoryPort) {
-        this.taskRepositoryPort = taskRepositoryPort;
+    public CreateUserUseCaseImpl(UserRepositoryPort userRepositoryPort) {
+        this.userRepositoryPort = userRepositoryPort;
     }
 
     @Override
-    public Task createTask(Task task) {
-        return taskRepositoryPort.save(task);
+    public User createUser(User user) {
+        return userRepositoryPort.save(user);
     }
 }

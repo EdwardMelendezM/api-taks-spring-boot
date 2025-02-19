@@ -1,25 +1,25 @@
 package com.hexagonal.users.application.usecases;
 
-import com.hexagonal.taks.domain.models.Task;
-import com.hexagonal.taks.domain.ports.in.DeleteTaskUseCase;
-import com.hexagonal.taks.domain.ports.out.TaskRepositoryPort;
+import com.hexagonal.users.domain.models.User;
+import com.hexagonal.users.domain.ports.in.DeleteUserUseCase;
+import com.hexagonal.users.domain.ports.out.UserRepositoryPort;
 
 import java.util.Optional;
 
-public class DeleteTaskUseCaseImpl implements DeleteTaskUseCase {
+public class DeleteUserUseCaseImpl implements DeleteUserUseCase {
 
-    private final TaskRepositoryPort taskRepositoryPort;
+    private final UserRepositoryPort userRepositoryPort;
 
-    public DeleteTaskUseCaseImpl(TaskRepositoryPort taskRepositoryPort) {
-        this.taskRepositoryPort = taskRepositoryPort;
+    public DeleteUserUseCaseImpl(UserRepositoryPort userRepositoryPort) {
+        this.userRepositoryPort = userRepositoryPort;
     }
 
     @Override
-    public boolean deleteTask(Long id) {
-        Optional<Task> task = taskRepositoryPort.findById(id);
+    public boolean deleteUser(Long id) {
+        Optional<User> task = userRepositoryPort.findById(id);
         if (task.isEmpty()) {
             return false;
         }
-        return taskRepositoryPort.deleteById(id);
+        return userRepositoryPort.deleteById(id);
     }
 }

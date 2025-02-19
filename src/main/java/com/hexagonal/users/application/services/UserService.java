@@ -1,56 +1,48 @@
 package com.hexagonal.users.application.services;
 
-import com.hexagonal.taks.domain.models.AdditionalTaskInfo;
-import com.hexagonal.taks.domain.models.Task;
-import com.hexagonal.taks.domain.ports.in.*;
+import com.hexagonal.users.domain.models.User;
+import com.hexagonal.users.domain.ports.in.*;
 
 import java.util.List;
 import java.util.Optional;
 
-public class TaskService implements CreateTaskUseCase, DeleteTaskUseCase, UpdateTaskUseCase, RetrieveTaskUseCase, GetAdditionalTaskInfoUseCase {
+public class UserService implements CreateUserUseCase, DeleteUserUseCase, UpdateUserUseCase, RetrieveUserUseCase {
 
-    private final CreateTaskUseCase createTaskUseCase;
-    private final DeleteTaskUseCase deleteTaskUseCase;
-    private final UpdateTaskUseCase updateTaskUseCase;
-    private final RetrieveTaskUseCase retrieveTaskUseCase;
-    private final GetAdditionalTaskInfoUseCase getAdditionalTaskInfoUseCase;
+    private final CreateUserUseCase createUserUseCase;
+    private final DeleteUserUseCase deleteUserUseCase;
+    private final UpdateUserUseCase updateUserUseCase;
+    private final RetrieveUserUseCase retrieveUserUseCase;
 
-    public TaskService(CreateTaskUseCase createTaskUseCase, DeleteTaskUseCase deleteTaskUseCase, UpdateTaskUseCase updateTaskUseCase, RetrieveTaskUseCase retrieveTaskUseCase, GetAdditionalTaskInfoUseCase getAdditionalTaskInfoUseCase) {
-        this.createTaskUseCase = createTaskUseCase;
-        this.deleteTaskUseCase = deleteTaskUseCase;
-        this.updateTaskUseCase = updateTaskUseCase;
-        this.retrieveTaskUseCase = retrieveTaskUseCase;
-        this.getAdditionalTaskInfoUseCase = getAdditionalTaskInfoUseCase;
+    public UserService(CreateUserUseCase createUserUseCase, DeleteUserUseCase deleteUserUseCase, UpdateUserUseCase updateUserUseCase, RetrieveUserUseCase retrieveUserUseCase) {
+        this.createUserUseCase = createUserUseCase;
+        this.deleteUserUseCase = deleteUserUseCase;
+        this.updateUserUseCase = updateUserUseCase;
+        this.retrieveUserUseCase = retrieveUserUseCase;
     }
 
 
     @Override
-    public Task createTask(Task task) {
-        return createTaskUseCase.createTask(task);
+    public User createUser(User task) {
+        return createUserUseCase.createUser(task);
     }
 
     @Override
-    public boolean deleteTask(Long id) {
-        return deleteTaskUseCase.deleteTask(id);
+    public boolean deleteUser(Long id) {
+        return deleteUserUseCase.deleteUser(id);
     }
 
     @Override
-    public AdditionalTaskInfo getAdditionalTaskInfo(Long id) {
-        return getAdditionalTaskInfoUseCase.getAdditionalTaskInfo(id);
+    public Optional<User> getUser(Long id) {
+        return retrieveUserUseCase.getUser(id);
     }
 
     @Override
-    public Optional<Task> getTask(Long id) {
-        return retrieveTaskUseCase.getTask(id);
+    public List<User> getAllUsers() {
+        return retrieveUserUseCase.getAllUsers();
     }
 
     @Override
-    public List<Task> getAllTasks() {
-        return retrieveTaskUseCase.getAllTasks();
-    }
-
-    @Override
-    public Optional<Task> updateTask(Long id, Task task) {
-        return updateTaskUseCase.updateTask(id, task);
+    public Optional<User> updateUser(Long id, User task) {
+        return updateUserUseCase.updateUser(id, task);
     }
 }

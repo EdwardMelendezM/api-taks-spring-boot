@@ -4,6 +4,6 @@ import com.hexagonal.users.domain.models.User;
 
 import java.util.Optional;
 
-public interface UpdateTaskUseCase {
-    Optional<User> updateTask(Long id, User task);
+public interface UpdateUserUseCase {
+    Optional<User> updateUser(Long id, User task);
 }

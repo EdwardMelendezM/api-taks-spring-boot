@@ -1,5 +1,5 @@
 package com.hexagonal.users.domain.ports.in;
 
-public interface DeleteTaskUseCase {
-    boolean deleteTask(Long id);
+public interface DeleteUserUseCase {
+    boolean deleteUser(Long id);
 }

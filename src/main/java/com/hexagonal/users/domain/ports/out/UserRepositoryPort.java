@@ -5,7 +5,7 @@ import com.hexagonal.users.domain.models.User;
 import java.util.List;
 import java.util.Optional;
 
-public interface TaskRepositoryPort {
+public interface UserRepositoryPort {
     User save(User task);
     Optional<User> findById(Long id);
     boolean deleteById(Long id);

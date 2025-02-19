@@ -1,25 +1,25 @@
 package com.hexagonal.users.application.usecases;
 
-import com.hexagonal.taks.domain.models.Task;
-import com.hexagonal.taks.domain.ports.in.UpdateTaskUseCase;
-import com.hexagonal.taks.domain.ports.out.TaskRepositoryPort;
+import com.hexagonal.users.domain.models.User;
+import com.hexagonal.users.domain.ports.in.UpdateUserUseCase;
+import com.hexagonal.users.domain.ports.out.UserRepositoryPort;
 
 import java.util.Optional;
 
-public class UpdateTaskUseCaseImpl implements UpdateTaskUseCase {
+public class UpdateUserUseCaseImpl implements UpdateUserUseCase {
 
-    private final TaskRepositoryPort taskRepositoryPort;
+    private final UserRepositoryPort userRepositoryPort;
 
-    public UpdateTaskUseCaseImpl(TaskRepositoryPort taskRepositoryPort) {
-        this.taskRepositoryPort = taskRepositoryPort;
+    public UpdateUserUseCaseImpl(UserRepositoryPort userRepositoryPort) {
+        this.userRepositoryPort = userRepositoryPort;
     }
 
     @Override
-    public Optional<Task> updateTask(Long id, Task task) {
-        Optional<Task> taskOptional = taskRepositoryPort.findById(id);
+    public Optional<User> updateUser(Long id, User task) {
+        Optional<User> taskOptional = userRepositoryPort.findById(id);
         if (taskOptional.isEmpty()) {
             return Optional.empty();
         }
-        return taskRepositoryPort.update(id, task);
+        return userRepositoryPort.update(id, task);
     }
 }

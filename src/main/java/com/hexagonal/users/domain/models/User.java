@@ -2,25 +2,28 @@ package com.hexagonal.users.domain.models;
 
 import java.time.LocalDateTime;
 
-public class Task {
+public class User {
     private Long id;
-    private String title;
-    private String description;
+    private String name;
+    private String surname;
+    private String gmail;
+    private LocalDateTime birthDate;
     private LocalDateTime createdAt;
-    private boolean completed;
 
-    public Task(
+    public User(
         Long id,
-        String title,
-        String description,
-        LocalDateTime createdAt,
-        boolean completed
+        String name,
+        String surname,
+        String gmail,
+        LocalDateTime birthDate,
+        LocalDateTime createdAt
     ) {
         this.id = id;
-        this.title = title;
-        this.description = description;
+        this.name = name;
+        this.surname = surname;
+        this.gmail = gmail;
+        this.birthDate = birthDate;
         this.createdAt = createdAt;
-        this.completed = completed;
     }
 
     public Long getId() {
@@ -31,20 +34,36 @@ public class Task {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setName(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getGmail() {
+        return gmail;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setGmail(String gmail) {
+        this.gmail = gmail;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public LocalDateTime getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDateTime birthDate) {
+        this.birthDate = birthDate;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -53,13 +72,5 @@ public class Task {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public boolean isCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
     }
 }
