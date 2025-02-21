@@ -21,7 +21,7 @@ public class UserEntity {
     private LocalDateTime birthDate;
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<TaskEntity> tasks;
 
     public UserEntity() {

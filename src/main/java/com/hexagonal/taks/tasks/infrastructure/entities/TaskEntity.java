@@ -18,7 +18,7 @@ public class TaskEntity {
     private boolean completed;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private UserEntity user;
 
     public TaskEntity() {

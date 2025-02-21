@@ -31,7 +31,7 @@ public class JpaUserRepositoryAdapter implements UserRepositoryPort {
 
     @Override
     public List<User> findAll() {
-        return jpaUserRepository.findAll().stream()
+        return jpaUserRepository.findAllWithTasks().stream()
                 .map(UserEntity::toDomainModel)
                 .collect(Collectors.toList());
     }
