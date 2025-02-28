@@ -1,5 +1,6 @@
 package com.hexagonal.taks.tasks.infrastructure.repositories;
 
+import com.hexagonal.taks.projects.infrastructure.entities.ProjectEntity;
 import com.hexagonal.taks.tasks.domain.models.Task;
 import com.hexagonal.taks.tasks.domain.ports.out.TaskRepositoryPort;
 import com.hexagonal.taks.tasks.infrastructure.entities.TaskEntity;
@@ -21,7 +22,8 @@ public class JpaTaskRepositoryAdapter implements TaskRepositoryPort {
     @Override
     public Task save(Task task) {
         UserEntity userEntity = UserEntity.fromDomainModel(task.getUser());
-        TaskEntity taskEntity = TaskEntity.fromDomainModel(task, userEntity);
+        ProjectEntity projectEntity = ProjectEntity.fromDomainModel(task.getProject());
+        TaskEntity taskEntity = TaskEntity.fromDomainModel(task, userEntity, projectEntity);
         TaskEntity savedTaskEntity = jpaTaskRepository.save(taskEntity);
         return TaskEntity.toDomainModel(savedTaskEntity);
     }
@@ -42,7 +44,8 @@ public class JpaTaskRepositoryAdapter implements TaskRepositoryPort {
     public Optional<Task> update(Long id, Task task) {
         if (jpaTaskRepository.existsById(task.getId())) {
             UserEntity userEntity = UserEntity.fromDomainModel(task.getUser());
-            TaskEntity taskEntity = TaskEntity.fromDomainModel(task, userEntity);
+            ProjectEntity projectEntity = ProjectEntity.fromDomainModel(task.getProject());
+            TaskEntity taskEntity = TaskEntity.fromDomainModel(task, userEntity, projectEntity);
             TaskEntity updatedTaskEntity = jpaTaskRepository.save(taskEntity);
             return Optional.of(TaskEntity.toDomainModel(updatedTaskEntity));
         }

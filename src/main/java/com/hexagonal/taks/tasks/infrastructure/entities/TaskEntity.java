@@ -1,5 +1,6 @@
 package com.hexagonal.taks.tasks.infrastructure.entities;
 
+import com.hexagonal.taks.projects.infrastructure.entities.ProjectEntity;
 import com.hexagonal.taks.tasks.domain.models.Task;
 import com.hexagonal.taks.users.infrastructure.entities.UserEntity;
 import jakarta.persistence.*;
@@ -21,19 +22,31 @@ public class TaskEntity {
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private ProjectEntity project;
+
     public TaskEntity() {
     }
 
-    public TaskEntity(String title, String description, LocalDateTime createdAt, boolean completed, UserEntity user) {
+    public TaskEntity(
+            String title,
+            String description,
+            LocalDateTime createdAt,
+            boolean completed,
+            UserEntity user,
+            ProjectEntity project
+    ) {
         this.title = title;
         this.description = description;
         this.createdAt = createdAt;
         this.completed = completed;
         this.user = user;
+        this.project = project;
     }
 
-    public static TaskEntity fromDomainModel(Task task, UserEntity user) {
-        return new TaskEntity(task.getTitle(), task.getDescription(), task.getCreatedAt(), task.isCompleted(), user);
+    public static TaskEntity fromDomainModel(Task task, UserEntity user, ProjectEntity project) {
+        return new TaskEntity(task.getTitle(), task.getDescription(), task.getCreatedAt(), task.isCompleted(), user, project);
     }
 
     public static Task toDomainModel(TaskEntity taskEntity) {
@@ -43,7 +56,7 @@ public class TaskEntity {
                 taskEntity.getDescription(),
                 taskEntity.getCreatedAt(),
                 taskEntity.isCompleted(),
-                UserEntity.toDomainModel(taskEntity.getUser())
+                Task.toDomainModel(taskEntity.getUser())
         );
     }
 
@@ -93,6 +106,14 @@ public class TaskEntity {
 
     public void setUser(UserEntity user) {
         this.user = user;
+    }
+
+    public ProjectEntity getProject() {
+        return project;
+    }
+
+    public void setProject(ProjectEntity project) {
+        this.project = project;
     }
 
 }

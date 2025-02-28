@@ -1,6 +1,8 @@
 package com.hexagonal.taks.tasks.domain.models;
 
+import com.hexagonal.taks.projects.domain.models.Project;
 import com.hexagonal.taks.users.domain.models.User;
+import com.hexagonal.taks.users.infrastructure.entities.UserEntity;
 
 import java.time.LocalDateTime;
 
@@ -11,6 +13,7 @@ public class Task {
     private LocalDateTime createdAt;
     private boolean completed;
     private User user; // Many-to-One relationship
+    private Project project; // Many-to-One relationship
 
     public Task(
         Long id,
@@ -25,7 +28,17 @@ public class Task {
         this.description = description;
         this.createdAt = createdAt;
         this.completed = completed;
-        this.user = user;
+    }
+
+    public static User toDomainModel(UserEntity user) {
+        return new User(
+            user.getId(),
+            user.getName(),
+            user.getSurname(),
+            user.getGmail(),
+            user.getBirthDate(),
+            user.getCreatedAt()
+        );
     }
 
     public Long getId() {
@@ -72,7 +85,13 @@ public class Task {
         return user;
     }
 
+
     public void setUser(User user) {
         this.user = user;
+    }
+
+//    getProject
+    public Project getProject() {
+        return project;
     }
 }

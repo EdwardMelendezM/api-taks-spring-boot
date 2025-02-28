@@ -40,7 +40,7 @@ public class UserEntity {
     // Convert domain model (User) to infrastructure entity (UserEntity)
     public static UserEntity fromDomainModel(User user) {
         List<TaskEntity> taskEntities = user.getTasks().stream()
-                .map(task -> TaskEntity.fromDomainModel(task, UserEntity.fromDomainModel(user)))
+                .map(task -> TaskEntity.fromDomainModel(task, UserEntity.fromDomainModel(user), null))
                 .collect(Collectors.toList());
 
         return new UserEntity(
@@ -56,7 +56,7 @@ public class UserEntity {
 
     // Convert infrastructure entity (UserEntity) to domain model (User)
     public static User toDomainModel(UserEntity userEntity) {
-        User user = new User(
+        return new User(
                 userEntity.getId(),
                 userEntity.getName(),
                 userEntity.getSurname(),
@@ -64,11 +64,6 @@ public class UserEntity {
                 userEntity.getBirthDate(),
                 userEntity.getCreatedAt()
         );
-
-        // Convert and add tasks to domain model
-        userEntity.getTasks().forEach(taskEntity -> user.addTask(TaskEntity.toDomainModel(taskEntity)));
-
-        return user;
     }
 
     // Getters and Setters
